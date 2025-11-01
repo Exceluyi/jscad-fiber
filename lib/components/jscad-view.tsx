@@ -72,25 +72,11 @@ export function JsCadView({
       const yLabel = createAxisLabel("Y", "#00ff00")
       const zLabel = createAxisLabel("Z", "#0000ff")
 
+      const axesHelper = new THREE.AxesHelper(2)
+
       // Create a group to hold both axes and labels
       const axesGroup = new THREE.Group()
-
-      function createAxisCube() {
-        const size = 1.5
-        const geometry = new THREE.BoxGeometry(size, size, size)
-        const materials = [
-          new THREE.MeshBasicMaterial({ color: 0xff0000 }), // +X
-          new THREE.MeshBasicMaterial({ color: 0x800000 }), // -X
-          new THREE.MeshBasicMaterial({ color: 0x00ff00 }), // +Y
-          new THREE.MeshBasicMaterial({ color: 0x008000 }), // -Y
-          new THREE.MeshBasicMaterial({ color: 0x0000ff }), // +Z
-          new THREE.MeshBasicMaterial({ color: 0x000080 }), // -Z
-        ]
-        return new THREE.Mesh(geometry, materials)
-      }
-
-      const axisCube = createAxisCube()
-      axesGroup.add(axisCube)
+      axesGroup.add(axesHelper)
 
       // Position labels at the end of each axis
       xLabel.position.set(1.2, 0, 0)
