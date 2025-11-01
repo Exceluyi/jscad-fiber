@@ -44,11 +44,6 @@ export function JsCadView({
       // Create separate scene and camera for axes helper
       const axesScene = new THREE.Scene()
       const axesCamera = new THREE.OrthographicCamera(-2, 2, 2, -2, 0.1, 1000)
-      const axesHelper = new THREE.AxesHelper(2)
-      if (zAxisUp) {
-        axesHelper.rotation.x = -Math.PI / 2
-      }
-      axesScene.add(axesHelper)
       axesCamera.position.z = 5
 
       // Create axis labels
@@ -79,21 +74,36 @@ export function JsCadView({
 
       // Create a group to hold both axes and labels
       const axesGroup = new THREE.Group()
-      axesGroup.add(axesHelper)
+
+      function createAxisCube() {
+        const size = 1.5
+        const geometry = new THREE.BoxGeometry(size, size, size)
+        const materials = [
+          new THREE.MeshBasicMaterial({ color: 0xff0000 }), // +X
+          new THREE.MeshBasicMaterial({ color: 0x800000 }), // -X
+          new THREE.MeshBasicMaterial({ color: 0x00ff00 }), // +Y
+          new THREE.MeshBasicMaterial({ color: 0x008000 }), // -Y
+          new THREE.MeshBasicMaterial({ color: 0x0000ff }), // +Z
+          new THREE.MeshBasicMaterial({ color: 0x000080 }), // -Z
+        ]
+        return new THREE.Mesh(geometry, materials)
+      }
+
+      const axisCube = createAxisCube()
+      axesGroup.add(axisCube)
 
       // Position labels at the end of each axis
       xLabel.position.set(1.2, 0, 0)
-      if (zAxisUp) {
-        yLabel.position.set(0, 0, -1.2)
-        zLabel.position.set(0, 1.2, 0)
-      } else {
-        yLabel.position.set(0, 1.2, 0)
-        zLabel.position.set(0, 0, 1.2)
-      }
+      yLabel.position.set(0, 1.2, 0)
+      zLabel.position.set(0, 0, 1.2)
 
       axesGroup.add(xLabel)
       axesGroup.add(yLabel)
       axesGroup.add(zLabel)
+
+      if (zAxisUp) {
+        axesGroup.rotation.x = -Math.PI / 2
+      }
 
       axesScene.add(axesGroup)
 
