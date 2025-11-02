@@ -72,16 +72,16 @@ export function JsCadView({
       const yLabel = createAxisLabel("Y", "#00ff00")
       const zLabel = createAxisLabel("Z", "#0000ff")
 
-      const axesHelper = new THREE.AxesHelper(2)
+      const axesHelper = new THREE.AxesHelper(1.5)
 
       // Create a group to hold both axes and labels
       const axesGroup = new THREE.Group()
       axesGroup.add(axesHelper)
 
       // Position labels at the end of each axis
-      xLabel.position.set(1.2, 0, 0)
-      yLabel.position.set(0, 1.2, 0)
-      zLabel.position.set(0, 0, 1.2)
+      xLabel.position.set(0.9, 0, 0)
+      yLabel.position.set(0, 0.9, 0)
+      zLabel.position.set(0, 0, 0.9)
 
       axesGroup.add(xLabel)
       axesGroup.add(yLabel)
@@ -97,7 +97,7 @@ export function JsCadView({
       const axesRenderer = new THREE.WebGLRenderer({ alpha: true })
       axesRenderer.setSize(200, 200)
       axesRenderer.domElement.style.position = "absolute"
-      axesRenderer.domElement.style.bottom = "30px"
+      axesRenderer.domElement.style.bottom = "10px"
       axesRenderer.domElement.style.right = "10px"
       containerRef.current.appendChild(axesRenderer.domElement)
       axesRendererRef.current = axesRenderer
