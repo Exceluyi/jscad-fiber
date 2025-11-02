@@ -69,8 +69,8 @@ export function JsCadView({
       }
 
       const xLabel = createAxisLabel("X", "#ff0000")
-      const yLabel = createAxisLabel("Y", "#00ff00")
-      const zLabel = createAxisLabel("Z", "#0000ff")
+      const yLabel = createAxisLabel("Z", "#0000ff")
+      const zLabel = createAxisLabel("Y", "#00ff00")
 
       const axesHelper = new THREE.AxesHelper(1.5)
 
