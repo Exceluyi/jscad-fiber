@@ -201,7 +201,7 @@ export function JsCadView({
     }
   }, [children, wireframe, zAxisUp, showGrid])
 
-  // Update grid visibility when showGrid prop changes
+  // Update the grid visibility when showGrid prop changes
   React.useEffect(() => {
     if (gridRef.current) {
       gridRef.current.visible = showGrid
